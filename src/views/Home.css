@@ -1,0 +1,85 @@
+.container{
+
+background-color: #f8fafc;
+}
+
+.header{
+    text-align: center;
+    color: #565151;
+   ;
+
+}
+.header-highlight{
+
+ color: #c11396
+
+}
+
+
+.app-container{
+text-align: center;
+z-index: 10;
+
+
+
+}
+.min-h-screen{
+    min-height: 100vh;
+}
+
+.w-full{
+    width: 100%;
+}
+
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}   
+
+.inset-0{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.z-0{
+    z-index: 0;
+}
+
+.emoji-container{
+    background-color:white;
+    width:150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border-radius: 20px;
+    border: 1px solid gray;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.emoji-picker{
+
+
+    width: fit-content;
+    border: 1px solid #595959;
+    border-radius: 10px;
+    padding: 10px 5px ;
+    background-color: #e6e6e6;
+}
+
+.emoji-option{
+
+    font-size: 24px;
+    background-color: #fff;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
