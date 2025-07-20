@@ -1,0 +1,19 @@
+
+.emoji-option{
+
+    font-size: 14px;
+    background-color: #fff;
+    padding:  5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    height: 15px;
+    width: 15px;
+}
+
+.emoji-option:hover{
+    background-color: #f0f0f0;
+    border:1px solid #c11396;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
