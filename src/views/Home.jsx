@@ -1,7 +1,7 @@
-
-import React from 'react';
+import React from 'react';  
 import "./Home.css";
 import { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import EmojiButton from '../components/EmojiButton';
 import ColorButton from '../components/ColorButton';
 import { Navbar, Footer } from '../components/NavbarFooter';
@@ -14,29 +14,21 @@ function Home() {
   const [sliderValue, setSliderValue] = useState(80);
   const [bgColor, setBgColor] = useState("#ffffff");
   const emojiRef = useRef();
+  const navigate = useNavigate();
 
-  const handleDownload = () => {
-    const canvas = document.createElement("canvas");
-    canvas.width = 200;
-    canvas.height = 200;
-    const ctx = canvas.getContext("2d");
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, 200, 200);
-    ctx.font = `${sliderValue}px serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(emoji, 100, 100);
-    const link = document.createElement("a");
-    link.download = "emojicrafter-emoji.png";
-    link.href = canvas.toDataURL();
-    link.click();
+  const handleSave = () => {
+    // Save emoji to localStorage cart
+    const cart = JSON.parse(localStorage.getItem('emojicart') || '[]');
+    cart.push({ emoji, size: `${sliderValue}px`, bgColor });
+    localStorage.setItem('emojicart', JSON.stringify(cart));
+    navigate('/cart');
   };
 
   return (
     <>
       <Navbar />
-      <div className="container min-h-screen w-full bg-white relative text-gray-800" style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
-        <div style={{flex: 1}}>
+      <div className="container min-h-screen w-full bg-white relative text-gray-800" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ flex: 1 }}>
           <div
             className="absolute inset-0 z-0 pointer-events-none"
             style={{
@@ -45,7 +37,7 @@ function Home() {
             }}
           />
           <div className="app-container">
-            <h1 className="header gradient-text" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'}}>
+            <h1 className="header gradient-text" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
               <span role="img" aria-label="sparkles">✨</span>
               <span>Welcome to <span className="header-highlight">Emojicrafter</span></span>
               <span role="img" aria-label="sparkles">✨</span>
@@ -66,23 +58,23 @@ function Home() {
               >
                 {emoji}
               </div>
-              <button className="download-btn" onClick={handleDownload}>
-                Download Emoji
+              <button className="download-btn" onClick={handleSave}>
+                Save Emoji
               </button>
             </div>
             <div className="controls-flex">
               <div className="emoji-picker">
                 {[
-                  "😊","😇","😀","😌","🤗","🥳","🥰","😍","😎","🤔","😂","😭","😜","😡","😱","😴","🤩","😏","😅","😬",
-                  "😃","😆","😋","😝","😚","😘","😗","😙","😛","😕","😟","😢","😤","😠","😳","😵","😷","🤒","🤕","🤑"
+                  "😊", "😇", "😀", "😌", "🤗", "🥳", "🥰", "😍", "😎", "🤔", "😂", "😭", "😜", "😡", "😱", "😴", "🤩", "😏", "😅", "😬",
+                  "😃", "😆", "😋", "😝", "😚", "😘", "😗", "😙", "😛", "😕", "😟", "😢", "😤", "😠", "😳", "😵", "😷", "🤒", "🤕", "🤑"
                 ].map(e => (
                   <EmojiButton key={e} emoji={e} setEmoji={setEmoji} />
                 ))}
               </div>
               <div className="color-picker">
                 {[
-                  "#c91e1eff","#f0f0f0","#c11396","#ffcc00","#00ccff","#ff6699","#100404ff","#00ff00","#0000ff","#800080",
-                  "#fffbe7","#ffe0f7","#e0ffe7","#e7e0ff","#ffb347","#b0e0e6","#ffb6c1","#e6e6fa","#f5fffa","#ffe4e1"
+                  "#c91e1eff", "#f0f0f0", "#c11396", "#ffcc00", "#00ccff", "#ff6699", "#100404ff", "#00ff00", "#0000ff", "#800080",
+                  "#fffbe7", "#ffe0f7", "#e0ffe7", "#e7e0ff", "#ffb347", "#b0e0e6", "#ffb6c1", "#e6e6fa", "#f5fffa", "#ffe4e1"
                 ].map(c => (
                   <ColorButton key={c} bgColor={c} setBgColor={setBgColor} />
                 ))}

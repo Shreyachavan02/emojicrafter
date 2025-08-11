@@ -16,7 +16,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
 }
 
 .header-highlight {
@@ -84,6 +83,22 @@
     height: 200px;
     display: flex;
     align-items: center;
+.emoji-picker, .color-picker {
+    width: 180px;
+    min-width: 140px;
+    max-width: 200px;
+    border: none;
+    border-radius: 16px;
+    padding: 8px 4px;
+    background: rgba(254, 254, 255, 0.85);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    height: 120px;
+    overflow-y: auto;
+    box-shadow: 0 1px 4px rgba(200,19,150,0.06);
+    align-items: center;
+}
     justify-content: center;
     margin: 0 auto 16px auto;
     border-radius: 24px;
@@ -143,6 +158,9 @@
     text-align: center;
     z-index: 10;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     padding-bottom: 40px;
     max-width: 600px;
     margin: 0 auto;
@@ -152,6 +170,8 @@
         max-width: 98vw;
         padding-left: 2vw;
         padding-right: 2vw;
+    flex: 1 1 auto;
+    overflow-y: auto;
     }
     .controls-flex {
         flex-direction: row;
