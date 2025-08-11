@@ -1,94 +1,108 @@
+
 import React from 'react';
 import "./Home.css";
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import EmojiButton from '../components/EmojiButton';
-import ColorButton from '../components/ColorButton';    
+import ColorButton from '../components/ColorButton';
+import { Navbar, Footer } from '../components/NavbarFooter';
+import '../components/NavbarFooter.css';
+
 
 
 function Home() {
+  const [emoji, setEmoji] = useState("😊");
+  const [sliderValue, setSliderValue] = useState(80);
+  const [bgColor, setBgColor] = useState("#ffffff");
+  const emojiRef = useRef();
 
-const [emoji,setEmoji] = useState("😊");
-const [sliderValue, setSliderValue] = useState(80);
-const [bgColor, setBgColor] = useState("#ffffff");
-
+  const handleDownload = () => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 200;
+    canvas.height = 200;
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, 200, 200);
+    ctx.font = `${sliderValue}px serif`;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillText(emoji, 100, 100);
+    const link = document.createElement("a");
+    link.download = "emojicrafter-emoji.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  };
 
   return (
-    <div className="container min-h-screen w-full bg-white relative text-gray-800">
-      {/* Circuit Board - Light Pattern */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
-            repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
-            radial-gradient(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),
-            radial-gradient(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
-          `,
-          backgroundSize: '40px 40px, 40px 40px, 40px 40px, 40px 40px',
-        }}
-      />
-
-      <div className="app-container">
-        <h1 className="header">Welcome to <span className="header-highlight">Emojicrafter!!!</span></h1>
-     <p>
-
-            Emojicrafter is a fun and interactive platform where you can create, customize, and share your own emojis. Whether you're looking to express your feelings, add some flair to your messages, or just have fun, Emojicrafter has got you covered!
-     </p>
-
-<div className="emoji-container card" style={{
-  fontSize: `${sliderValue}px`,
-  backgroundColor: bgColor,
-  transition: 'background-color 0.3s, font-size 0.3s',
-  boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
-  borderRadius: '16px',
-  width: '120px',
-  height: '120px',
-  margin: '0 auto 16px',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  userSelect: 'all',
-}}>
-  {emoji}
-</div>
-
-
-<div className="slider-container">
-        <input type="range" min="0" max="100"
-          className="slider"
-          onChange={(e) => {
-             setSliderValue(e.target.value);}}
-          value={sliderValue}
-        />
+    <>
+      <Navbar />
+      <div className="container min-h-screen w-full bg-white relative text-gray-800" style={{display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+        <div style={{flex: 1}}>
+          <div
+            className="absolute inset-0 z-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(135deg, #f8fafc 0%, #ffe0f7 100%)",
+            }}
+          />
+          <div className="app-container">
+            <h1 className="header gradient-text" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px'}}>
+              <span role="img" aria-label="sparkles">✨</span>
+              <span>Welcome to <span className="header-highlight">Emojicrafter</span></span>
+              <span role="img" aria-label="sparkles">✨</span>
+            </h1>
+            <p className="subtitle">
+              Emojicrafter is a fun and interactive platform where you can create, customize, and share your own emojis. Whether you're looking to express your feelings, add some flair to your messages, or just have fun, Emojicrafter has got you covered!
+            </p>
+            <div className="emoji-card-glass">
+              <div
+                ref={emojiRef}
+                className="emoji-container card"
+                style={{
+                  fontSize: `${sliderValue}px`,
+                  backgroundColor: bgColor,
+                  transition: 'background-color 0.3s, font-size 0.3s',
+                  userSelect: 'all',
+                }}
+              >
+                {emoji}
+              </div>
+              <button className="download-btn" onClick={handleDownload}>
+                Download Emoji
+              </button>
+            </div>
+            <div className="controls-flex">
+              <div className="emoji-picker">
+                {[
+                  "😊","😇","😀","😌","🤗","🥳","🥰","😍","😎","🤔","😂","😭","😜","😡","😱","😴","🤩","😏","😅","😬",
+                  "😃","😆","😋","😝","😚","😘","😗","😙","😛","😕","😟","😢","😤","😠","😳","😵","😷","🤒","🤕","🤑"
+                ].map(e => (
+                  <EmojiButton key={e} emoji={e} setEmoji={setEmoji} />
+                ))}
+              </div>
+              <div className="color-picker">
+                {[
+                  "#c91e1eff","#f0f0f0","#c11396","#ffcc00","#00ccff","#ff6699","#100404ff","#00ff00","#0000ff","#800080",
+                  "#fffbe7","#ffe0f7","#e0ffe7","#e7e0ff","#ffb347","#b0e0e6","#ffb6c1","#e6e6fa","#f5fffa","#ffe4e1"
+                ].map(c => (
+                  <ColorButton key={c} bgColor={c} setBgColor={setBgColor} />
+                ))}
+              </div>
+            </div>
+            <div className="slider-container">
+              <input
+                type="range"
+                min="40"
+                max="120"
+                className="slider"
+                onChange={e => setSliderValue(e.target.value)}
+                value={sliderValue}
+              />
+            </div>
+          </div>
+        </div>
+        <Footer />
       </div>
-
-<div className="emoji-picker">
-  <EmojiButton emoji= {"😊" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"😇" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"😀" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"😌" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"🤗" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"🥳" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"🥰" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"😍" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"😎" } setEmoji={setEmoji} />
-  <EmojiButton emoji= {"🤔" } setEmoji={setEmoji} />
-</div><br></br>
-
-<div className="color-picker">
-  <ColorButton bgColor={"#c91e1eff"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#f0f0f0"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#c11396"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#ffcc00"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#00ccff"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#ff6699"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#100404ff"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#00ff00"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#0000ff"} setBgColor={setBgColor} />
-  <ColorButton bgColor={"#800080"} setBgColor={setBgColor} />
-</div>
-</div>
-</div>
+    </>
   );
 }
 
