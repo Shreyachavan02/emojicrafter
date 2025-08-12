@@ -1,3 +1,38 @@
+# 🖌️♦️ Emojicrafter
+
+**Create, customize, and collect your own emojis!**  
+A playful web app to craft unique emojis with your favorite colors and styles.
+
+---
+
+## ✨ Features
+
+- 🎨 Emoji and color picker on the same line
+- 📏 Adjustable emoji size with a slider
+- 🛒 Save your custom emoji to a cart
+- 🗂️ View and manage all saved emojis on the Cart page
+- 🌈 Beautiful gradient background and modern UI
+- 📱 Fully responsive for mobile and desktop
+- 📌 Sticky navbar and footer for easy navigation
+- 🚫 No unwanted scrollbars for a clean look
+
+---
+
+## 🛠️ Tech Stack
+
+- React 
+
+---
+_Made with ❤️ by Shreya Chavan_
+
+
+### Prerequisites
+- Node.js (v14 or higher recommended)
+- npm or yarn
+
+---
+
+Made with ❤️ by Shreya Chavan
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
