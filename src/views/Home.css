@@ -109,7 +109,6 @@ html, body {
     grid-template-columns: repeat(5, 1fr);
     gap: 8px;
     height: 120px;
-    overflow: visible;
     height: auto;
     box-shadow: 0 1px 4px rgba(200,19,150,0.06);
     align-items: center;
