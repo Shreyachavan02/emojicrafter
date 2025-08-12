@@ -13,7 +13,7 @@
     width: 32px;
     box-shadow: 0 1px 3px rgba(0,204,255,0.10);
     transition: border 0.2s, box-shadow 0.2s, transform 0.15s;
-    outline: none;
+    outline: solid 2px black;
 }
 .color-button:hover, .color-button:focus {
     border: 2.5px solid #00ccff;

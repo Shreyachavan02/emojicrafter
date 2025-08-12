@@ -1,3 +1,17 @@
+html {
+    overflow-x: hidden;
+}
+body {
+    overflow-x: hidden;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffe0f7 100%) !important;
+    min-height: 100vh;
+}
 .container {
     background: transparent;
 }
@@ -33,7 +47,7 @@
 .app-container {
     text-align: center;
     z-index: 10;
-    position: relative;
+    position: sticky;
     padding-bottom: 40px;
 }
 
@@ -95,7 +109,8 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 8px;
     height: 120px;
-    overflow-y: auto;
+    overflow: visible;
+    height: auto;
     box-shadow: 0 1px 4px rgba(200,19,150,0.06);
     align-items: center;
 }
@@ -152,7 +167,10 @@
 .container {
     background: transparent;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     overflow-x: hidden;
+    padding-bottom: 80px; /* Prevent content from being hidden behind fixed footer */
 }
 .app-container {
     text-align: center;

@@ -17,7 +17,6 @@ function Home() {
   const navigate = useNavigate();
 
   const handleSave = () => {
-    // Save emoji to localStorage cart
     const cart = JSON.parse(localStorage.getItem('emojicart') || '[]');
     cart.push({ emoji, size: `${sliderValue}px`, bgColor });
     localStorage.setItem('emojicart', JSON.stringify(cart));
@@ -27,15 +26,8 @@ function Home() {
   return (
     <>
       <Navbar />
-      <div className="container min-h-screen w-full bg-white relative text-gray-800" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <div className="container min-h-screen w-full bg-white relative text-gray-800">
         <div style={{ flex: 1 }}>
-          <div
-            className="absolute inset-0 z-0 pointer-events-none"
-            style={{
-              background:
-                "linear-gradient(135deg, #f8fafc 0%, #ffe0f7 100%)",
-            }}
-          />
           <div className="app-container">
             <h1 className="header gradient-text" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
               <span role="img" aria-label="sparkles">✨</span>

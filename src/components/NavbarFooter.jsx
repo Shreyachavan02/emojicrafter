@@ -1,5 +1,5 @@
 import React from "react";
-import "./NavbarFooter.css";
+import { Link } from "react-router-dom";
 
 export function Navbar() {
   return (
@@ -7,6 +7,14 @@ export function Navbar() {
       <div className="navbar-logo">
         <span role="img" aria-label="mascot" style={{fontSize: '2rem', marginRight: '8px'}}>�‍🎨</span>
         Emojicrafter
+      </div>
+      <div className="navbar-links">
+        <Link to="/" className="navbar-link" style={{marginLeft: '24px', fontWeight: 500, textDecoration: 'none', color: '#333', display: 'flex', alignItems: 'center'}}>
+          <span role="img" aria-label="home" style={{marginRight: '6px'}}>🏠</span> Home
+        </Link>
+        <Link to="/cart" className="navbar-link" style={{marginLeft: '24px', fontWeight: 500, textDecoration: 'none', color: '#333', display: 'flex', alignItems: 'center'}}>
+          <span role="img" aria-label="cart" style={{marginRight: '6px'}}>🛒</span> Cart
+        </Link>
       </div>
     </nav>
   );
